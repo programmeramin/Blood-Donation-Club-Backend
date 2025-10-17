@@ -388,18 +388,18 @@ export const resetpassword = asyncHandler(async (req, res) => {
   }
 
 
-   // check otp time expired 
+  // check otp
+  if (user.accessToken !== otp) {
+    return res.status(400).json({ message: "Wrong otp" });
+  }
+  
+    // check otp time expired 
   if(user.otpExpiresAt < new Date()){
     user.accessToken = null;
     user.otpExpiresAt = null;
      await user.save();
 
 
-  // check otp
-  if (user.accessToken !== otp) {
-    return res.status(400).json({ message: "Wrong otp" });
-  }
-  
  
     return res.status(400).json({message : "Otp time expired again forgot password"});
   }
