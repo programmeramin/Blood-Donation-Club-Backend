@@ -17,7 +17,7 @@ import axios from "axios";
 export const registerUser = asyncHandler(async (req, res) => {
   const { name, auth, password, conPass, role } = req.body;
 
-  // Validation
+  // Validation  
   if (!name?.trim() || !auth?.trim() || !password?.trim() || !conPass?.trim()) {
     return res.status(400).json({ message: "All fields are required" });
   }
