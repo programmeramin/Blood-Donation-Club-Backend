@@ -215,7 +215,7 @@ export const login = asyncHandler(async (req, res) => {
  * @access public
  * @route api/v1/auth/logout
  */
-
+18723
 export const logOut = asyncHandler(async (req, res) => {
   res.clearCookie("loginUserToken", {
     httpOnly: true,
@@ -398,9 +398,6 @@ export const resetpassword = asyncHandler(async (req, res) => {
     user.accessToken = null;
     user.otpExpiresAt = null;
      await user.save();
-
-
- 
     return res.status(400).json({message : "Otp time expired again forgot password"});
   }
 
