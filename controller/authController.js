@@ -251,7 +251,7 @@ export const getLoggedInUser = asyncHandler(async (req, res) => {
  * @access  public
  * @route api/v1/auth/change-password
  */
-
+ 
 export const changepassword = asyncHandler(async (req, res) => {
   const { oldPassword, newPassword, conPassword } = req.body;
 
