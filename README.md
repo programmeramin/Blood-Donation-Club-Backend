@@ -9,4 +9,4 @@ First of all, you have to open an account here; it has to be opened with Gmail o
 
 If you want to set up the account within 30 days of opening it, and if it is not filled 100%, you will have to delete it again after 30 days. Because if the account is not set up completely, then those who need blood cannot easily find the donor and get all their information.
 
-This application is being made to assist those who truly need blood and are in critical need. Only those who are authentic users and really donate blood will be placed here after verification.   
+This application is being made to assist those who truly need blood and are in critical need. Only those who are authentic users and really donate blood will be placed here after verification.
