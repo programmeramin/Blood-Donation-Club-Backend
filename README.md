@@ -1,2 +1,3 @@
 # Blood-Donation-Club-Backend
- Blood-Donation-Club-Backend
+### This is a blood donation app. It's only created for a blood Donor help Through which blood donors can easily donate blood and those who need blood can 
+And they will be able to easily find blood donors at their district and upazila levels.
