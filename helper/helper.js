@@ -141,7 +141,7 @@ export const timeAgo = (date) => {
 /**
  * OPT    
  */
-export const createOTP = (length = 5) => {
+export const createOTP = (length = 4) => {
   let otp = "";
   for (let i = 0; i < length; i++) {
     otp += Math.floor(Math.random() * 10); // Append a random digit (0-9)
