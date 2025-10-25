@@ -6,7 +6,7 @@ import { MongoDBConnect } from "./config/MongoDB.js";
 import authRoute from "./route/authRoute.js";
 import searchRoute from "./route/donorRoute.js";
 import errorHandler from "./middleware/errorHandler.js";
-
+import cors from "cors";
  
 // initialize app
 const app = express();
@@ -20,7 +20,15 @@ const PORT = process.env.PORT || 8080;
 // Set middlewares                
 app.use(express.json());
 app.use(express.urlencoded({extended : false}));
-app.use(cookieParser())
+app.use(cookieParser());
+
+// ✅ CORS Allow Setup
+app.use(cors({
+    origin : process.env.CLIENT_URL,
+    credentials : true, // allow cookies to be sent
+    methods : ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allowedHeaders : ["Content-Type", "Authorization"]
+}))
     
 // static folder
 app.use(express.static("public"));
