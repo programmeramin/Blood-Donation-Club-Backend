@@ -76,16 +76,16 @@ export const registerUser = asyncHandler(async (req, res) => {
   }
 
   if (authPhone) {
-    // const message =  `Hi ${name}, Your OTP code: ${otp}. OTP is valid for 5 minutes.`;
-    // await axios.get("https://bulksmsbd.net/api/smsapi", {
-    //   params: {
-    //     api_key: "9AmVeMs2GnbB1IS5H7FW",
-    //     type: "text",
-    //     number: authPhone,
-    //     senderid: "8809617612994",
-    //     message,
-    //   },
-    // });
+    const message =  `Hi ${name}, Your OTP code: ${otp}. OTP is valid for 5 minutes.`;
+    await axios.get("https://bulksmsbd.net/api/smsapi", {
+      params: {
+        api_key: "9AmVeMs2GnbB1IS5H7FW",
+        type: "text",
+        number: authPhone,
+        senderid: "8809617612994",
+        message,
+      },
+    });
   }
 
   res.status(201).json({ user, message: "Donor created successfully" });
