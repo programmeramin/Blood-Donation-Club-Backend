@@ -17,7 +17,7 @@ const router = express.Router();
 // routing
 router.post("/register", registerUser);
 router.post("/verify-otp", verifyOtp);
-router.post("/login", login);
+router.post("/sign-in", login);
 router.get("/me", tokenVerify, getLoggedInUser);
 router.post("/logout", logOut);
 router.put("/change-password", tokenVerify, changepassword);
