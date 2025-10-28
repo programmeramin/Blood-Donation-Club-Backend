@@ -61,12 +61,12 @@ export const registerUser = asyncHandler(async (req, res) => {
     { expiresIn: "1y" }
   );
 
-  res.cookie("activationToken", activationToken, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "none",
-    path: "/",
-  });
+ res.cookie("activationToken", activationToken, {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+});
+
 
   // Send OTP
   if (authEmail) {
@@ -136,7 +136,11 @@ export const verifyOtp = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: "Invalid OTP" });
   if (user.otpExpiresAt < new Date()) {
     await User.findByIdAndDelete(user._id); // ❌ Delete unverified user otp time expired
-    res.clearCookie("activationToken"); // clear token also
+    res.clearCookie("activationToken",{
+      httpOnly: true,
+    sameSite: "none",
+    secure: process.env.NODE_ENV === "production",
+    }); // clear token also
     return res
       .status(400)
       .json({ message: "OTP expired. Please register again." });
@@ -152,7 +156,9 @@ export const verifyOtp = asyncHandler(async (req, res) => {
   res.clearCookie("activationToken",{
     httpOnly : true,
     sameSite : "none",
-    secure : process.env.NODE_ENV = "production"
+    secure : process.env.NODE_ENV === "production",
+    sameSite: "none",
+    path: "/",
   });
 
   res.status(200).json({ message: "Account verified successfully" });
@@ -201,7 +207,7 @@ export const login = asyncHandler(async (req, res) => {
   const loginUserToken = jwt.sign(
     { auth: isEmail(auth) ? loginUser.email : loginUser.phone },
     process.env.USER_LOGN_SECRET,
-    { expiresIn: "365d" }
+    { expiresIn: "365d" },
   );
 
   
