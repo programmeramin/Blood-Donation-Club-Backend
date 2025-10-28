@@ -197,7 +197,7 @@ export const login = asyncHandler(async (req, res) => {
   }
 
   const loginUserToken = jwt.sign(
-    { auth: loginUser.auth },
+    { auth: isEmail(auth) ? loginUser.email : loginUser.phone },
     process.env.USER_LOGN_SECRET,
     { expiresIn: "365d" }
   );
@@ -212,7 +212,7 @@ export const login = asyncHandler(async (req, res) => {
     maxAge: 1000 * 60 * 60 * 24 * 365,
   });
 
-  res.status(200).json({ loginUserToken, message: "Donor login successfull" });
+  res.status(200).json({loginUser : loginUserToken, message: "Donor login successfull" });
 });
 
 /**
@@ -245,8 +245,9 @@ export const getLoggedInUser = asyncHandler(async (req, res) => {
     return res.status(404).json({ message: "Logged In User not found" });
   }
 
+
   res.status(200).json({
-    auth: req.me,
+    user : req.me,
     message: "User fetched successfully",
   });
 });
