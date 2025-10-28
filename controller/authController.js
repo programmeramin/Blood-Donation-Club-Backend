@@ -64,6 +64,8 @@ export const registerUser = asyncHandler(async (req, res) => {
   res.cookie("activationToken", activationToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
+    sameSite: "none",
+    path: "/",
   });
 
   // Send OTP
